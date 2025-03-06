@@ -1,0 +1,46 @@
+### Survey Note: Comprehensive Development Prompt for Hackathon AI Agent
+
+This note outlines a comprehensive prompt for developing "Phoenix Assistant," an AI agent designed to win the GitHub Hack Night hackathon on March 5, 2025, hosted by Weaviate, Comet, and Hypermode. The hackathon, starting at 4:00 PM PST and concluding with demos at 7:30 PM, emphasizes AI agent frameworks, model deployment, and community engagement, with specific challenges for winning prizes. The focus is on creating impactful solutions relevant to "Rebuilding LA!" following the 2025 Los Angeles County fires, aligning with the event's theme of innovation and recovery.
+
+### Context and Hackathon Challenges
+
+The hackathon offers prizes for the Build Log Challenge ($50), Demo Challenge ($200 for 1st, $100 for 2nd, plus $250 Mistral credits for best Mistral demo), and Social Media Challenge ($50). Key rules include:
+
+- Build logs must be human-written, with no LLM-generated text or prompt engineering.
+- Projects must be relevant to "Rebuilding LA!" and avoid front-end hacking.
+- Demos must leverage data from https://www.ca.gov/lafires/ and can use Weaviate Embedding Service and Mistral models.
+
+Research into "Rebuilding LA!" revealed it refers to efforts post-2025 wildfires, with government initiatives like Governor Newsom's executive order to streamline rebuilding and Mayor Bass's orders to clear bureaucratic obstacles. The fires, affecting areas like Altadena and Pacific Palisades, caused significant damage, with estimates of over 12,000 structures destroyed and $40 billion in economic losses. The official website provides resources for disaster recovery, including help with housing, financial assistance, and real-time fire information, aligning with the rebuilding efforts.
+
+### Agent Design: Phoenix Assistant
+
+The name "Phoenix Assistant" symbolizes rebirth, fitting the theme of recovery and reconstruction. The agent is a conversational AI designed to assist residents by providing personalized information and guidance on the rebuilding process, ensuring relevance to "Rebuilding LA!".
+
+### Key Features and Requirements
+
+The prompt must detail the following features to ensure competitiveness:
+
+- **Natural Language Interaction**: Users can ask questions in natural language, such as "How do I apply for FEMA assistance?" or "Where can I find temporary housing?" The agent processes these queries using Mistral models for accurate, context-aware responses.
+- **Data-Driven Responses**: Data from https://www.ca.gov/lafires/ and subpages (e.g., /get-help-online/, /get-help-in-person/, /start-your-recovery/) is scraped and stored in Weaviate. This includes details like upcoming deadlines (e.g., March 10, 2025, for FEMA assistance), services at Disaster Recovery Centers (e.g., Altadena, 540 W. Woodbury Rd., open Mon-Sat, 9 am-7 pm), and rebuilding steps. The agent uses semantic search to retrieve relevant information, ensuring accuracy.
+- **Mistral Model Integration**: Leveraging Mistral models enhances response quality, aligning with the $250 credits prize for best Mistral demo. The agent generates embeddings for user queries and retrieves relevant chunks from Weaviate, then crafts responses based on the context.
+- **Simple Web Interface**: A minimalistic web chat interface, possibly using Gradio or Streamlit, allows users to interact easily. It supports conversation history for follow-up questions, enhancing user experience without front-end hacking of external sites.
+- **Additional Enhancements**: The agent can provide links to original sources in responses (e.g., [FEMA assistance](https://www.fema.gov/assistance/individual)) and ask clarifying questions to personalize answers, such as location-specific information for Altadena residents.
+
+### Implementation Details
+
+The prompt should guide the development process with a Retrieve, Augment, Generate (RAG) system:
+
+1. **Data Collection**: Text from key pages is extracted, cleaned, and split into 500-1000 character chunks, ensuring meaningful segments using sentence boundaries.
+2. **Embedding and Storage**: Chunks are embedded using Weaviate's embedding service and stored with metadata (e.g., source page, category), enabling efficient retrieval.
+3. **Query Processing**: User queries are processed by Mistral models via LangChain, generating embeddings for semantic search in Weaviate. Top N similar chunks are retrieved and used as context.
+4. **Response Generation**: The Mistral model generates responses based on the query and retrieved context, with error handling for unclear or unavailable information.
+
+Testing involves sample questions like "What are the steps to start rebuilding my home?" to ensure accuracy, with responses referencing official data (e.g., building permits at https://pw.lacounty.gov/permits/epicla/default.aspx).
+
+### Winning Strategy and Prompt Inclusion
+
+To maximize success, the prompt must include strategies for all challenges:
+
+- **Build Log Challenge ($50)**: A detailed, human-written log will document the process, including data scraping, embedding setup, and agent testing. Highlight relevance to "Rebuilding LA!" with examples like housing assistance, ensuring compliance with no LLM-generated text or prompt engineering rules.
+- **Demo Challenge ($200/$100, +$250 Mistral Credits)**: The demo will showcase Phoenix Assistant handling user queries, emphasizing Mistral model use and Weaviate integration. It will be submitted via the "My Projects" tab, ticking "I want to demo my project," and prioritize projects built during the hackathon, leveraging https://www.ca.gov/lafires/ data for authenticity.
+- **Social Media Challenge ($50)**: High-quality X posts will include demo screenshots, descriptions of features, and learnings (e.g., Weaviate's vectorization benefits, Mistral's response accuracy), aiming to win the prize with engaging content.
